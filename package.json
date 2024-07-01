@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "ip": "^2.0.1",
+    "ipapi.co": "^0.3.0"
+  }
+}
