@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const app = express();
+app.set("trust proxy", true);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -21,8 +22,9 @@ app.get("/api/hello", async (req, res) => {
     ip_address = ipResponse.data?.ip;
     location = ipResponse.data?.city;
 
+    const clientIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    console.log(`Client IP: ${clientIp}`);
     console.log("IP address:", req.ip);
-    console.log(req.socket.remoteAddress);
 
     const weatherResponse = await axios.get(
       `https://api.weatherapi.com/v1/current.json?key=f4823e6d9b3844d0b73112846240107&q=${ip_address}&aqi=no`
