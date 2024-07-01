@@ -18,6 +18,7 @@ app.get("/api/hello", async (req, res) => {
   let temperature = 0;
   let location = "";
   try {
+    ip_address = req.ip;
     const ipResponse = await axios.get(`https://ipapi.co/${ip_address}/json/`);
     location = ipResponse.data?.city;
 
@@ -26,7 +27,7 @@ app.get("/api/hello", async (req, res) => {
     );
     temperature = weatherResponse.data?.current.temp_c;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching data:", error.message);
     res.status(500).json({ error: "Error fetching data" });
     return;
   }
