@@ -21,6 +21,9 @@ app.get("/api/hello", async (req, res) => {
     ip_address = ipResponse.data?.ip;
     location = ipResponse.data?.city;
 
+    console.log("IP address:", req.ip);
+    console.log(req.socket.remoteAddress);
+
     const weatherResponse = await axios.get(
       `https://api.weatherapi.com/v1/current.json?key=f4823e6d9b3844d0b73112846240107&q=${ip_address}&aqi=no`
     );
