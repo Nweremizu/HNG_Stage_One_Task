@@ -22,7 +22,7 @@ app.get("/api/hello", async (req, res) => {
     location = ipResponse.data?.city;
 
     const weatherResponse = await axios.get(
-      `https://api.weatherapi.com/v1/current.json?key=f4823e6d9b3844d0b73112846240107&q=${ip_address}&aqi=no`
+      `https://api.weatherapi.com/v1/current.json?key=f4823e6d9b3844d0b73112846240107&q=${location}&aqi=no`
     );
     temperature = weatherResponse.data?.current.temp_c;
   } catch (error) {
